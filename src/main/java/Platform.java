@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 public class Platform extends Pane {
     public int id;
     public boolean destroyOnce=false;
-    Image platformImg = new Image(getClass().getClassLoader().getResourceAsStream("images/platforms.png"));
+    Image platformImg = new Image(getClass().getClassLoader().getResourceAsStream("images/plat/platforms.png"));
     ImageView platformView;
 
     public void brownPlatform(){

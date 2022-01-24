@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 
 public class Character extends Pane{
 
-    Image doodleImg = new Image(getClass().getClassLoader().getResourceAsStream("images/doodler.png"));
+    Image doodleImg = new Image(getClass().getClassLoader().getResourceAsStream("images/doodler/p4.png"));
     ImageView imageView = new ImageView(doodleImg);
     public Point2D playerVelocity = new Point2D(0,0);
     private boolean canJump = true;
@@ -32,13 +32,11 @@ public class Character extends Pane{
                 if(getBoundsInParent().intersects(platform.getBoundsInParent())){
                     if(movingDown){
                         if(this.getTranslateY()+ this.getHeight() == platform.getTranslateY() && platform.id == 1){
-                            new Sound ("/sounds/jump.mp3");
                             this.setTranslateY(this.getTranslateY()-1);
                             canJump = true;
                             return;
                         }
                         if(this.getTranslateY()+ this.getHeight() == platform.getTranslateY() && platform.id == 2 && !platform.isDestroyOnce()) {
-                            new Sound ("/sounds/lomise.wav");
                             platform.brokenBrownPlatform();
                             platform.setDestroyOnce(true);
                             return;

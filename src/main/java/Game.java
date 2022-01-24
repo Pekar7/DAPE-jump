@@ -10,14 +10,13 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Game extends Application {
 
     public static ArrayList<Platform> platforms = new ArrayList<>();
-    private boolean soundOff = false;
     private HashMap<KeyCode,Boolean> keys = new HashMap<>();
-
-    Image backgroundImg = new Image(getClass().getResourceAsStream("images/background2.png"));
+    Image backgroundImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/back/back-or.jpeg")));
 
     public static final int BLOCK_SIZE = 68;
 
@@ -28,7 +27,6 @@ public class Game extends Application {
     Text scoreText = new Text();
     Text gameoverText = new Text();
     public boolean checkPlayerPos;
-
 
     private void initContent(){
         ImageView background = new ImageView(backgroundImg);
@@ -42,7 +40,6 @@ public class Game extends Application {
             platforms.add(new Platform(1,(int)(Math.random()*5*BLOCK_SIZE),shift));
         }
         for (int i = 0; i < 4; i++) { //Коричневые платформы
-
             shift-=min+(int)(Math.random()*((max-min)+1));
             platforms.add(new Platform(2,(int)(Math.random()*5*BLOCK_SIZE),shift));
         }
@@ -81,13 +78,10 @@ public class Game extends Application {
         checkSide();
         if (player.ifFalls()){
             gameOverText();
-            gameoverText.setText("Game over! press 'Space' to restart");
-            scoreText.setTranslateY(300);
+            gameoverText.setText("Хороший результат! " +
+                    "\nЧтобы продолжить nft игру \nнажми пробел");
+            scoreText.setTranslateY(250);
             scoreText.setTranslateX(200);
-            if(soundOff == false){
-                new Sound ("/sounds/fall.wav");
-                soundOff=true;
-            }
             if(isPressed(KeyCode.SPACE)){
                 restart();
             }
@@ -112,7 +106,7 @@ public class Game extends Application {
         if(checkPlayerPos == true){
                 score+=1;
         }
-        scoreText.setText("Score: "+ score);
+        scoreText.setText("Очки: "+ score);
         scoreText.setTranslateY(30);
         scoreText.setTranslateX(50);
         scoreText.setScaleX(2);
@@ -149,7 +143,6 @@ public class Game extends Application {
 
     public void restart(){
         platforms.clear();
-        soundOff=false;
         keys.clear();
         Game.score = 0;
         gameRoot.getChildren().remove(gameoverText);
