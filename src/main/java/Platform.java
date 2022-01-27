@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 public class Platform extends Pane {
     public int id;
     public boolean destroyOnce=false;
-    Image platformImg = new Image(getClass().getClassLoader().getResourceAsStream("images/plat/platforms.png"));
+    Image platformImg = new Image(getClass().getClassLoader().getResourceAsStream("images/plat/platform.png"));
     ImageView platformView;
 
     public void brownPlatform(){
@@ -33,8 +33,8 @@ public class Platform extends Pane {
 
     public Platform(int id, int x, int y) {
         platformView = new ImageView(platformImg);
-        platformView.setFitWidth(68);
-        platformView.setFitHeight(14);
+        platformView.setFitWidth(80);
+        platformView.setFitHeight(15);
         setTranslateX(x);
         setTranslateY(y);
 

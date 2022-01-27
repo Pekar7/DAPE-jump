@@ -16,7 +16,7 @@ public class Game extends Application {
 
     public static ArrayList<Platform> platforms = new ArrayList<>();
     private HashMap<KeyCode,Boolean> keys = new HashMap<>();
-    Image backgroundImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/back/back-or.jpeg")));
+    Image backgroundImg = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/back/black.jpeg")));
 
     public static final int BLOCK_SIZE = 68;
 
@@ -35,11 +35,11 @@ public class Game extends Application {
         int shift = 650;
         int min = 130;
         int max = 160;
-        for (int i = 0; i < 8; i++) { //Зеленые платформы
+        for (int i = 0; i < 8; i++) { //целые
             shift-=min+(int)(Math.random()*((max-min)+1));
             platforms.add(new Platform(1,(int)(Math.random()*5*BLOCK_SIZE),shift));
         }
-        for (int i = 0; i < 4; i++) { //Коричневые платформы
+        for (int i = 0; i < 4; i++) { //сломанные
             shift-=min+(int)(Math.random()*((max-min)+1));
             platforms.add(new Platform(2,(int)(Math.random()*5*BLOCK_SIZE),shift));
         }
@@ -78,8 +78,7 @@ public class Game extends Application {
         checkSide();
         if (player.ifFalls()){
             gameOverText();
-            gameoverText.setText("Хороший результат! " +
-                    "\nЧтобы продолжить nft игру \nнажми пробел");
+            gameoverText.setText("        Good result!" + "\nPress the space bar \nto continue the game :)");
             scoreText.setTranslateY(250);
             scoreText.setTranslateX(200);
             if(isPressed(KeyCode.SPACE)){
@@ -106,7 +105,7 @@ public class Game extends Application {
         if(checkPlayerPos == true){
                 score+=1;
         }
-        scoreText.setText("Очки: "+ score);
+        scoreText.setText("Score: "+ score);
         scoreText.setTranslateY(30);
         scoreText.setTranslateX(50);
         scoreText.setScaleX(2);
